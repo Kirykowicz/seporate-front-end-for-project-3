@@ -10,7 +10,7 @@ export default function DayDiv({ name, id }) {
       .then((res) => {
         setMeals(res);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>

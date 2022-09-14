@@ -15,7 +15,7 @@ export default function MealDiv({ mealNumber, mealId }) {
       .then((res) => {
         setItems(res);
       });
-  }, []);
+  }, [mealId]);
 
   return (
     <div>
