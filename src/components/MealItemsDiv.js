@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function MealItemsDiv({ id }) {
+export default function MealItemsDiv({ id, item_id }) {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
@@ -10,8 +10,15 @@ export default function MealItemsDiv({ id }) {
         setItem(res);
       });
   }, []);
+
+  const handleDelete = function () {
+    fetch(`http://localhost:9292/meal-items/${item_id}`, {
+      method: "DELETE",
+    });
+  };
+
   return (
-    <div>
+    <div onClick={handleDelete}>
       <h4 className="foodItems">{item.name}</h4>
     </div>
   );
