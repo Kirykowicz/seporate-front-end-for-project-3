@@ -13,8 +13,8 @@ export default function DayDiv({ name, id }) {
   }, [id]);
 
   return (
-    <div>
-      <h2>{name}</h2>
+    <div className="day-container">
+      <h2 className="title">{name}</h2>
       <div>
         {meals.map((meal) => (
           <MealDiv

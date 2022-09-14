@@ -13,7 +13,7 @@ export default function MealItemsDiv({ id, item_id, deleteButton }) {
 
   return (
     <div onClick={() => deleteButton(item_id)}>
-      <h4 className="foodItems">{item.name}</h4>
+      <h4 className="foodItems title">{item.name}</h4>
     </div>
   );
 }
