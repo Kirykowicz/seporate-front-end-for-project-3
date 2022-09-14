@@ -40,6 +40,22 @@ export default function Meal({ days }) {
       .then(console.log);
   };
 
+  const dayName = function (num) {
+    if (num === 8) return "Monday";
+    if (num === 9) return "Tuesday";
+    if (num === 10) return "Wednesday";
+    if (num === 11) return "Thursday";
+    if (num === 12) return "Friday";
+    if (num === 13) return "Saturday";
+    if (num === 14) return "Sunday";
+  };
+
+  const mealName = function (num) {
+    if (num === 1) return "Breakfast";
+    if (num === 2) return "Lunch";
+    if (num === 3) return "Dinner";
+  };
+
   return (
     <div className="meal-form">
       <h2>ADD A MEAL ITEM</h2>
@@ -48,9 +64,7 @@ export default function Meal({ days }) {
           <option>Choose a day and meal</option>
           {dayMeal.map((res) => (
             <option value={res.id}>
-              Day id:
-              {res.day_id} meal number:
-              {res.meal_number}
+              {dayName(res.day_id)} - {mealName(res.meal_number)}
             </option>
           ))}
         </select>

@@ -15,7 +15,7 @@ export default function MealDiv({ mealNumber, mealId }) {
       .then((res) => {
         setItems(res);
       });
-  }, [meal_items]);
+  }, []);
 
   // const handleDelete = function (id) {
   //   fetch(`http://localhost:9292/meal-items/${id}`, {
@@ -23,12 +23,25 @@ export default function MealDiv({ mealNumber, mealId }) {
   //   });
   // };
 
+  const handleDelete = function (item_id) {
+    fetch(`http://localhost:9292/meal-items/${item_id}`, {
+      method: "DELETE",
+    });
+    let newArray = meal_items.filter((item) => item.id !== item_id);
+    setItems(newArray);
+  };
+
   return (
     <div>
       <h3 className="mealName">{mealName}</h3>
       <div>
         {meal_items.map((item) => (
-          <MealItemsDiv id={item.item_id} key={item.id} item_id={item.id} />
+          <MealItemsDiv
+            id={item.item_id}
+            key={item.id}
+            item_id={item.id}
+            deleteButton={handleDelete}
+          />
         ))}
       </div>
     </div>
