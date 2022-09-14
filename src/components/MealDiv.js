@@ -17,12 +17,18 @@ export default function MealDiv({ mealNumber, mealId }) {
       });
   }, []);
 
+  // const handleDelete = function (id) {
+  //   fetch(`http://localhost:9292/meal-items/${id}`, {
+  //     method: "DELETE",
+  //   });
+  // };
+
   return (
     <div>
       <h3 className="mealName">{mealName}</h3>
       <div>
         {meal_items.map((item) => (
-          <MealItemsDiv id={item.item_id} key={item.id} />
+          <MealItemsDiv id={item.item_id} key={item.id} item_id={item.id} />
         ))}
       </div>
     </div>
