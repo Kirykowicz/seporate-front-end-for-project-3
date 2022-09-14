@@ -15,7 +15,7 @@ export default function MealDiv({ mealNumber, mealId }) {
       .then((res) => {
         setItems(res);
       });
-  }, []);
+  }, [meal_items]);
 
   // const handleDelete = function (id) {
   //   fetch(`http://localhost:9292/meal-items/${id}`, {

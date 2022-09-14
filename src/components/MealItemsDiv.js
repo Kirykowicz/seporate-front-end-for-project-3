@@ -9,7 +9,7 @@ export default function MealItemsDiv({ id, item_id }) {
       .then((res) => {
         setItem(res);
       });
-  }, []);
+  }, [item_id]);
 
   const handleDelete = function () {
     fetch(`http://localhost:9292/meal-items/${item_id}`, {
