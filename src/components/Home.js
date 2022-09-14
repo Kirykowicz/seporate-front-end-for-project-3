@@ -14,7 +14,7 @@ export default function Home({ days }) {
 
   return (
     <div>
-      <h1>HERE IS THE GAME PLAN FOR THE WEEK</h1>
+      <h1 className="title">HERE IS THE GAME PLAN FOR THE WEEK</h1>
       <div>
         {days.map((day) => (
           <DayDiv name={day.name} id={day.id} key={day.id} />

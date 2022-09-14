@@ -32,9 +32,9 @@ export default function MealDiv({ mealNumber, mealId }) {
   };
 
   return (
-    <div>
-      <h3 className="mealName">{mealName}</h3>
-      <div>
+    <div className="single">
+      <h3 className="mealName title">{mealName}</h3>
+      <div className="single-info">
         {meal_items.map((item) => (
           <MealItemsDiv
             id={item.item_id}
