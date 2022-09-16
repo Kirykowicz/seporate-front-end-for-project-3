@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
+import PlanMealDisplay from "./PlanMealDisplay";
 export default function Meal({ days }) {
   const [meal, setMeal] = useState(0);
   const [dayMeal, setDayMeal] = useState([]);
   const [items, setItems] = useState([]);
   const [item, setItem] = useState(0);
+
+  const [searchInput, setSearchInput] = useState("");
+
+  const daysMap = {}
+  days.forEach(day => {
+    daysMap[day.id] = day.name
+  })
 
   useEffect(() => {
     fetch(`http://localhost:9292/meals`)
@@ -21,6 +29,17 @@ export default function Meal({ days }) {
       });
   }, []);
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+
+  if (searchInput.length > 0) {
+    items.filter((item) => {
+      return item.name.match(searchInput);
+    });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,7 +48,7 @@ export default function Meal({ days }) {
       item_id: item,
     };
 
-    fetch(`http://localhost:9292/meal-items`, {
+    fetch(`http://localhost:9292/meal-items`, { //For adding a meal to the planner
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,17 +56,11 @@ export default function Meal({ days }) {
       body: JSON.stringify(newMealItem),
     })
       .then((res) => res.json())
-      .then(console.log);
+      .then();
   };
 
   const dayName = function (num) {
-    if (num === 8) return "Monday";
-    if (num === 9) return "Tuesday";
-    if (num === 10) return "Wednesday";
-    if (num === 11) return "Thursday";
-    if (num === 12) return "Friday";
-    if (num === 13) return "Saturday";
-    if (num === 14) return "Sunday";
+    return daysMap[num]
   };
 
   const mealName = function (num) {
@@ -57,25 +70,30 @@ export default function Meal({ days }) {
   };
 
   return (
-    <div className="meal-form">
-      <h2>ADD A MEAL ITEM</h2>
-      <form onSubmit={handleSubmit}>
-        <select value={meal} onChange={(e) => setMeal(e.target.value)}>
-          <option>Choose a day and meal</option>
-          {dayMeal.map((res) => (
-            <option value={res.id}>
-              {dayName(res.day_id)} - {mealName(res.meal_number)}
-            </option>
-          ))}
-        </select>
-        <select value={item} onChange={(e) => setItem(e.target.value)}>
-          <option>choose an item</option>
-          {items.map((individual_item) => (
-            <option value={individual_item.id}>{individual_item.name}</option>
-          ))}
-        </select>
-        <button type="submit">Add</button>
-      </form>
+    <div className='main-grid'>
+      <div className="meal-form">
+        <h2>PLAN YOUR MEALS</h2>
+        <form onSubmit={handleSubmit}>
+          <select value={meal} onChange={(e) => setMeal(e.target.value)}>
+            <option>Choose a day and meal</option>
+            {dayMeal.map((res) => (
+              <option value={res.id}>
+                {dayName(res.day_id)} - {mealName(res.meal_number)}
+              </option>
+            ))}
+          </select>
+          <select value={item} onChange={(e) => setItem(e.target.value)}>
+            <option>Food</option>
+            {items.map((individual_item) => (
+              <option value={individual_item.id}>{individual_item.name}</option>
+            ))}
+          </select>
+          <button type="submit">Add</button>
+        </form>
+
+
+      </div>
+      <PlanMealDisplay mealId={item} meals={items} />
     </div>
   );
 }

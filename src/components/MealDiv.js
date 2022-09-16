@@ -9,6 +9,7 @@ export default function MealDiv({ mealNumber, mealId }) {
   if (mealNumber === 2) mealName = "Lunch";
   if (mealNumber === 3) mealName = "Dinner";
 
+
   useEffect(() => {
     fetch(`http://localhost:9292/meals/${mealId}/items`)
       .then((res) => res.json())
@@ -16,12 +17,6 @@ export default function MealDiv({ mealNumber, mealId }) {
         setItems(res);
       });
   }, []);
-
-  // const handleDelete = function (id) {
-  //   fetch(`http://localhost:9292/meal-items/${id}`, {
-  //     method: "DELETE",
-  //   });
-  // };
 
   const handleDelete = function (item_id) {
     fetch(`http://localhost:9292/meal-items/${item_id}`, {
@@ -33,15 +28,17 @@ export default function MealDiv({ mealNumber, mealId }) {
 
   return (
     <div className="single">
-      <h3 className="mealName title">{mealName}</h3>
+      <h3 className="mealName-title">{mealName}</h3>
       <div className="single-info">
         {meal_items.map((item) => (
-          <MealItemsDiv
-            id={item.item_id}
-            key={item.id}
-            item_id={item.id}
-            deleteButton={handleDelete}
-          />
+          <div>
+            <MealItemsDiv
+              id={item.item_id}
+              key={item.id}
+              item_id={item.id}
+            />
+            <button onClick={ () => handleDelete(item.id)}>Delete?</button>
+          </div>
         ))}
       </div>
     </div>

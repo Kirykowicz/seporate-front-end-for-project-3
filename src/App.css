@@ -2,10 +2,12 @@
   box-sizing: border-box;
 }
 
-body {
+html {
+  background-image: url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
   margin: 0;
-  /* background: hsl(210, 36%, 96%); */
-  background-color: lightcoral;
+  background-repeat: repeat;
+  background-size: 100%;
+  background-attachment: fixed;
 }
 
 .nav {
@@ -47,9 +49,16 @@ body {
   background-color: #777;
 }
 
-.foodItems {
+.foodItems-title {
   color: red;
+  background-color: rgb(116, 112, 112);
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  gap: 2rem;
+  margin: 3px;
 }
+
 
 .mealName {
   color: darkgoldenrod;
@@ -72,35 +81,49 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.title {
+.title-plan {
   text-align: center;
+  background: rgba(227, 194, 194, 0.7);
+  margin-left: 20%;
+  margin-right: 20%;
   margin-bottom: 4rem;
 }
 
-.day-container {
+div>.add-item-container {
+  margin-top: 5%;
+}
+.planner{
+  text-transform: capitalize;
+}
+.day-container,
+.add-item-container {
   border: 4px solid white;
   width: 95vw;
   margin: 0 auto;
   max-width: 720px;
   margin-bottom: 10px;
   border-radius: 2%;
+  text-align: center;
   background-color: lightgray;
 }
 
-.meal-form {
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
   box-sizing: content-box;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem;
-  margin: 5px 160px;
-  width: 250px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.meal-form {
+  box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
   border: 4px solid white;
   border-width: 2px;
   border-radius: 10px;
   background-color: lightgray;
+  height: 250px;
+  padding: 20px;
+  align-content: center;
 }
 
 .meal-form form {
@@ -110,15 +133,23 @@ body {
   flex-direction: column;
 }
 
-.meal-form input {
-  padding: 10px 20px;
-  margin-right: 0;
-  margin-bottom: 10px;
-  border: solid;
-  border-radius: 6px;
-  border-width: 1px;
+button {
+  background-color: rgb(190, 190, 190);
+  border-radius: 5px;
+  border-style: hidden;
+  margin: 3px;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.meal-form button {
+
+button:hover {
+  background-color: rgb(150, 149, 149);
+}
+
+.meal-form input,
+.meal-form button,
+.meal-form select {
   padding: 10px 20px;
   margin-right: 0;
   margin-bottom: 10px;
@@ -127,11 +158,80 @@ body {
   border-width: 1px;
 }
 
-.meal-form select {
-  padding: 10px 20px;
-  margin-right: 0;
+
+.submissions {
+  display: block;
+  margin: auto;
+  border-radius: 50px;
+}
+
+.shown-food {
+  display: flex;
+}
+
+.submission-image {
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.meal-plan-images {
+  max-width: 20%;
+  border-radius: 10px;
+  margin-left: auto;
+  display: block;
+  position: relative
+}
+
+
+
+.sub-grid {
+  grid-template-columns: repeat(4, 1fr);
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+  border: 4px solid white;
+  border-width: 2px;
+  border-radius: 10px;
+  background-color: lightgray;
+  align-items: center;
+}
+
+.show-image>img,
+.show-url,
+.show-ingredients,
+.show-recipe,
+.show-nutrients,
+.show-name {
   margin-bottom: 10px;
-  border: solid;
   border-radius: 6px;
   border-width: 1px;
+}
+
+
+.show-image>img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.show-ingredients,
+.show-name {
+  margin-right: 5%;
+}
+
+.show-nutrients{
+  width: 50%;
+}
+
+.instructions, .top-information {
+  display: flex;
+  flex-direction: row;
+}
+
+.show-name {
+  text-align: center;
+  float:left;
+  margin-left: 15px;
+  width: 50%;
 }
